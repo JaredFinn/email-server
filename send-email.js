@@ -8,9 +8,6 @@ const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-// Requiring file system to use local files
-const fs = require("fs");
-
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -62,22 +59,9 @@ app.post('/send-email', (req, res) => {
     }
   });
 });
-
-// Creating object of key and certificate
-// for SSL
-const options = {
-  key: fs.readFileSync("server.key"),
-  cert: fs.readFileSync("server.cert"),
-};
   
-// Creating https server by passing
-// options and app object
-https.createServer(options, app)
-.listen(443, function (req, res) {
-  console.log("Server listening on port 443");
-});
 
-// // start server
-// app.listen(443, () => {
-//   console.log('Server listening on port 443');
-// });
+// start server
+app.listen(443, () => {
+  console.log('Server listening on port 443');
+});
