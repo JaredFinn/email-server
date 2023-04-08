@@ -8,10 +8,6 @@ const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const fs = require('fs');
-
-const file = fs.readFileSync('./08D1733541128DF2C9036C0AD9AD9C0A.txt')
-
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -63,10 +59,6 @@ app.post('/send-email', (req, res) => {
     }
   });
 });
-
-app.get('/.well-known/pki-validation/08D1733541128DF2C9036C0AD9AD9C0A.txt', (req, res) => {
-  res.sendFile('/home/ubuntu/email-server/08D1733541128DF2C9036C0AD9AD9C0A.txt');
-})
   
 
 // start server
